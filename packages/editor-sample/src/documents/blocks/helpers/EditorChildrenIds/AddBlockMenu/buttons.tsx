@@ -154,6 +154,21 @@ export const BUTTONS: TButtonProps[] = [
       },
     }),
   },
+  {
+    label: 'If',
+    icon: <span>{'{% if %}'}</span>,
+    block: () => ({
+      type: 'IfContainer',
+      data: {
+        props: {
+          if: 'true',
+          then: [],
+          elif: [],
+          else: null,
+        },
+      },
+    }),
+  },
 
   // { label: 'ProgressBar', icon: <ProgressBarOutlined />, block: () => ({}) },
   // { label: 'LoopContainer', icon: <ViewListOutlined />, block: () => ({}) },

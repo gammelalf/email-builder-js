@@ -22,6 +22,8 @@ import ContainerPropsSchema from '../blocks/Container/ContainerPropsSchema';
 import EmailLayoutEditor from '../blocks/EmailLayout/EmailLayoutEditor';
 import EmailLayoutPropsSchema from '../blocks/EmailLayout/EmailLayoutPropsSchema';
 import EditorBlockWrapper from '../blocks/helpers/block-wrappers/EditorBlockWrapper';
+import IfContainerPropsSchema from '../blocks/IfContainer/IfContainerPropsSchema';
+import IfContainerEditor from '../blocks/IfContainer/IfContainerEditor';
 
 const EDITOR_DICTIONARY = buildBlockConfigurationDictionary({
   Avatar: {
@@ -114,6 +116,14 @@ const EDITOR_DICTIONARY = buildBlockConfigurationDictionary({
     Component: (props) => (
       <EditorBlockWrapper>
         <Divider {...props} />
+      </EditorBlockWrapper>
+    ),
+  },
+  IfContainer: {
+    schema: IfContainerPropsSchema,
+    Component: (props) => (
+      <EditorBlockWrapper>
+        <IfContainerEditor {...props} />
       </EditorBlockWrapper>
     ),
   },

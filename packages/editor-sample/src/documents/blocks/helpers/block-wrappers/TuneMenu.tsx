@@ -6,6 +6,7 @@ import { IconButton, Paper, Stack, SxProps, Tooltip } from '@mui/material';
 import { TEditorBlock } from '../../../editor/core';
 import { resetDocument, setSelectedBlockId, useDocument } from '../../../editor/EditorContext';
 import { ColumnsContainerProps } from '../../ColumnsContainer/ColumnsContainerPropsSchema';
+import { IfContainerProps } from '../../IfContainer/IfContainerPropsSchema';
 
 const sx: SxProps = {
   position: 'absolute',
@@ -70,6 +71,20 @@ export default function TuneMenu({ blockId }: Props) {
                 })),
               },
             } as ColumnsContainerProps,
+          };
+          break;
+        case 'IfContainer':
+          nDocument[id] = {
+            type: 'IfContainer',
+            data: {
+              ...block.data,
+              props: {
+                ...block.data.props,
+                then: filterChildrenIds(block.data.props.then),
+                elif: block.data.props.elif.map((elifProps) => ({...elifProps, then: filterChildrenIds(elifProps.then) })),
+                else: filterChildrenIds(block.data.props.else),
+              },
+            } as IfContainerProps,
           };
           break;
         default:
@@ -137,6 +152,20 @@ export default function TuneMenu({ blockId }: Props) {
                 })),
               },
             } as ColumnsContainerProps,
+          };
+          break;
+        case 'IfContainer':
+          nDocument[id] = {
+            type: 'IfContainer',
+            data: {
+              ...block.data,
+              props: {
+                ...block.data.props,
+                then: moveChildrenIds(block.data.props.then),
+                elif: block.data.props.elif.map((elifProps) => ({...elifProps, then: moveChildrenIds(elifProps.then) })),
+                else: moveChildrenIds(block.data.props.else),
+              },
+            } as IfContainerProps,
           };
           break;
         default:

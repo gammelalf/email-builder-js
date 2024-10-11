@@ -14,11 +14,14 @@ export default function ContainerEditor({ style, props }: ContainerProps) {
   const document = useDocument();
   const currentBlockId = useCurrentBlockId();
 
+  console.log("Render", childrenIds);
+
   return (
     <BaseContainer style={style}>
       <EditorChildrenIds
         childrenIds={childrenIds}
         onChange={({ block, blockId, childrenIds }) => {
+          console.log("Update", childrenIds);
           setDocument({
             [blockId]: block,
             [currentBlockId]: {
